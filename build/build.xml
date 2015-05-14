@@ -1,0 +1,82 @@
+<project name="DeployManager" default="build" basedir=".">
+	
+	<target name="init" description="Set Props">
+		<!-- Define build vars -->
+		<property name="project.name" value="" />
+		<property name="project.buildRoot" value=""/>
+		<property name="project.versionFile" value="d:\wwwroot\deploymanager\version\${project.name}.cfm"/>
+	
+		<!-- Define destination targets -->
+		<property name="deploymentRoot" location="" />
+		<property name="deploymentPath" location="" />
+		
+		<!-- Define svn data. -->
+		<property name="svn.rooturl" value="" />
+		<property name="svn.username" value="" />
+		<property name="svn.password" value="" />
+		<property name="svn.projecturl" value="" />
+		<property name="svn.tagurl" value="" />
+		<property name="svn.revision" value="HEAD" />
+		
+		<!-- Version Info -->
+		<property name="baseVersion" value=""/>
+	
+		<!-- clean and create build dirs -->
+		<delete dir="${deploymentPath}"/>
+		<mkdir dir="${deploymentPath}"/>
+	
+	</target>
+	
+	<!--+++++++++++++++++++++++++++-->
+	<target name="cleanBuildDir" description="Cleans the build directory">
+		<delete dir="${project.buildRoot}" />
+		<mkdir dir="${project.buildRoot}" />
+	</target>
+	
+	<!--+++++++++++++++++++++++++++-->
+	<target name="checkoutBuild" description="Pulls code from Subversion into the build directory">
+		<exec executable="svn">
+			<arg line="co ${svn.projecturl} ${project.buildRoot} -r ${svn.revision} --username ${svn.username} --password ${svn.password}" />
+		</exec>
+		<!-- Get the svn version info and set it to a property (may be able to add the output attribute to write the file in one call in the future,-->
+		<exec executable="svnversion" dir="${project.buildRoot}" spawn="false" outputProperty="revision">
+			<arg line="."/>
+		</exec>
+		
+		<!-- Get the svn version info and write it to a file, may be able to remove this if we can set the version to a file and a property in one call -->
+		<exec executable="svnversion" dir="${project.buildRoot}" spawn="false" output="${project.versionFile}">
+			<arg line="."/>
+		</exec>
+		
+		<property name="buildVersion" value="${baseVersion}_b${revision}"/>
+		
+		<!-- Replace the version with the fill build number -->
+		<replace file="${project.versionFile}" token="${revision}" value="${buildVersion}"/>
+		
+		<!-- creat a tag for the build -->
+		<exec executable="svn">
+			<arg line="copy ${svn.projecturl} ${svn.tagurl}${buildVersion} -m 'Created new build ${buildVersion} of ${project.name}' --username ${svn.username} --password ${svn.password}" />
+		</exec>
+	</target>
+	
+	<!--+++++++++++++++++++++++++++-->
+	<target name="copyWWW" description="copies www files">
+		<copy todir="${deploymentPath}" overwrite="true">
+			<fileset dir="${project.buildRoot}">
+				<exclude name="build.xml" />
+				<exclude name=".MyCSMServerInfo" />
+				<exclude name=".project" />
+				<exclude name=".psd"/>
+				<exclude name=".doc" />
+				<exclude name="test.cfm" />
+				<exclude name="**/sql**" />
+			</fileset>
+		</copy>
+	</target>
+	
+	
+	
+	<!--+++++++++++++++++++++++++++-->
+	<target name="build" depends="init,cleanBuildDir,checkoutBuild,copyWWW" description="Builds Project" />
+	
+</project>

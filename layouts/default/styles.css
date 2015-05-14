@@ -1,0 +1,243 @@
+body {
+	margin:0px;
+	padding:0px;
+	background-color:white;
+	}
+	
+body, th, td {
+	font-family:verdana, arial, helvetica, sans-serif;
+	color:#333;
+	font-size: 11px;
+}
+
+h1 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:18px;
+	line-height:18px;
+	font-weight:900;
+	color:#ccc;
+	}
+	
+h4 {
+	margin:10px 10px 1px 0px;
+	padding:0px;
+	font-size:12px;
+	line-height:12px;
+	font-weight:900;
+	color:#24618E;
+	}
+
+p {
+	font:11px/20px verdana, arial, helvetica, sans-serif;
+	margin:0px 0px 16px 0px;
+	padding:0px;
+	}
+
+#content>p {margin:0px;}
+
+#content>p+p {text-indent:30px;}
+
+a {
+	color:#09c;
+	font-size:11px;
+	text-decoration:none;
+	font-weight:600;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+
+a:link {color:#09c;}
+
+a:visited {color:#09c;}
+
+a:hover {background-color:#eee;}
+
+.headerLink {
+	color:#09c;
+	font-size:20px;
+	text-decoration:none;
+	font-weight:bold;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+
+.topLinks ul{
+	font-size: 10px; list-style: none; margin: 0; text-align: right
+}
+
+.topLinks li {
+ border-right: 1px solid #d7d7d7;
+ display: inline;
+ padding: 0 .75em;
+ white-space: nowrap;
+}
+
+.topLinks li.last { border-right: none }
+
+
+/* Table output styles */
+table.listing{
+	clear: both;
+	 border-bottom: 1px solid #d7d7d7;
+	 border-collapse: collapse;
+	 border-spacing: 0;
+	 margin-top: 1em;
+	 width: 100%;
+}
+
+table.listing th { text-align: left; padding: 0 1em .1em 0; font-size: 12px }
+table.listing thead { background: #eeeeee }
+table.listing thead th {
+	 border: 1px solid #d7d7d7;
+	 border-bottom-color: #999;
+	 font-size: 11px;
+	 font-weight: bold;
+	 padding: 2px .5em;
+	 vertical-align: bottom;
+}
+
+table.listing thead th :link:hover, table.listing thead th :visited:hover {
+ 	background-color: transparent;
+}
+
+table.listing thead th a { border: none; padding-right: 12px }
+
+table.listing tbody td, table.listing tbody th {
+	 border: 1px dotted #ddd;
+	 padding: .33em .5em;
+	 vertical-align: top;
+}
+table.listing tbody td a:hover, table.listing tbody th a:hover {
+ 	background-color: transparent;
+}
+table.listing tbody tr { border-top: 1px solid #ddd }
+table.listing tbody tr.even { background-color: #fcfcfc }
+table.listing tbody tr.odd { background-color: #f7f7f7 }
+table.listing tbody tr:hover { background: #eeeeee !important }
+
+/* End table listing styles */
+
+#header {
+	margin:30px 0px 0px 0px;
+	padding:17px 0px 0px 20px;
+	/* For IE5/Win's benefit height = [correct height] + [top padding] + [top and bottom border widths] */
+	height:33px; /* 14px + 17px + 2px = 33px */
+	border-style:solid;
+	border-color:black;
+	border-width:1px 0px 0px 0px; /* top and bottom borders: 1px; left and right borders: 0px */
+	line-height:11px;
+	background-color:#eee;
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	height:14px; /* the correct height */
+	}
+
+/* I've heard this called the "be nice to Opera 5" rule. Basically, it feeds correct 
+length values to user agents that exhibit the parsing error exploited above yet get 
+the CSS box model right and understand the CSS2 parent-child selector. ALWAYS include
+a "be nice to Opera 5" rule every time you use the Tantek Celik hack (above). */
+
+body>#header {height:14px;}
+
+#content {
+	margin:0px 210px 50px 10px;
+	padding:10px;
+	}
+
+#menu {
+	position:absolute;
+	top:120px;
+	right:20px;
+	width:172px;
+	padding:10px;
+	background-color:#eee;
+	border:1px dashed #999;
+	line-height:17px;
+/* Again, the ugly brilliant hack. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:150px;
+	}
+	
+#menu h4 {
+	margin:10px 10px 1px 0px;
+	padding:0px;
+	font-size:11px;
+	line-height:11px;
+	font-weight:900;
+	color:#24618E;
+	}
+	
+#menu p {
+	font-family:verdana, arial, helvetica, sans-serif;
+	color:#333;
+	font-size: 9px;
+	padding:0px;
+	}
+	
+#footer{
+	margin:50px 0px 10px 0px;
+	padding:17px 0px 0px 20px;
+	/* For IE5/Win's benefit height = [correct height] + [top padding] + [top and bottom border widths] */
+	height:33px; /* 14px + 17px + 2px = 33px */
+	border-style:solid;
+	border-color:black;
+	border-width:1px 0px; /* top and bottom borders: 1px; left and right borders: 0px */
+	line-height:11px;
+	background-color:#eee;
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	height:14px; /* the correct height */
+}
+
+/* Again, "be nice to Opera 5". */
+body>#menu {width:150px;}
+
+/*- Menu Tabs--------------------------- */
+
+    #tabs {
+      margin:0px 0px 10px 0px;
+      float:left;
+      width:100%;
+      background:#eee;
+      font-size:93%;
+      line-height:normal;
+	  border-bottom:1px solid #24618E;
+      }
+    #tabs ul {
+	margin:0;
+	padding:10px 10px 0 50px;
+	list-style:none;
+      }
+    #tabs li {
+      display:inline;
+      margin:0;
+      padding:0;
+      }
+    #tabs a {
+      float:left;
+      background:url("images/tableftJ.gif") no-repeat left top;
+      margin:0;
+      padding:0 0 0 5px;
+      text-decoration:none;
+      }
+    #tabs a span {
+      float:left;
+      display:block;
+      background:url("images/tabrightJ.gif") no-repeat right top;
+      padding:5px 15px 4px 6px;
+      color:#24618E;
+      }
+    /* Commented Backslash Hack hides rule from IE5-Mac \*/
+    #tabs a span {float:none;}
+    /* End IE5-Mac hack */
+    #tabs a:hover span {
+      color:#FFF;
+      }
+    #tabs a:hover {
+      background-position:0% -42px;
+      }
+    #tabs a:hover span {
+      background-position:100% -42px;
+      }
+      
+
